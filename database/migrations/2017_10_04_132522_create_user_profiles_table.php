@@ -15,6 +15,20 @@ class CreateUserProfilesTable extends Migration
     {
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on($tableNames['users'])
+                ->onDelete('cascade');
+            $table->string('name')->nullable();
+            $table->string('job')->nullable();
+            $table->string('local')->nullable();
+            $table->integer('phone')->nullable();
+            $table->string('birthday')->nullable();
+            $table->string('avatar')->default('https://imgur.com/a/djlvB');
+            $table->integer('coins')->default(0);
+            $table->integer('reputation')->default(0);
+            $table->text('introduction')->nullable();
             $table->timestamps();
         });
     }

@@ -15,6 +15,8 @@ class CreateNotificationSettingsTable extends Migration
     {
         Schema::create('notification_settings', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->unique();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

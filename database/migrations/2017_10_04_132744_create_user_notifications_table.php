@@ -15,6 +15,17 @@ class CreateUserNotificationsTable extends Migration
     {
         Schema::create('user_notifications', function (Blueprint $table) {
             $table->increments('id');
+            $tabl->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on($tableNames['users'])
+                ->onDelete('cascade');
+            $table->integer('notification_id')->unsigned();
+            $table->foreign('notification_id')
+                ->references('id')
+                ->on($tableNames['notification_settings'])
+                ->onDelete('cascade');
+            $table->integer('satte')->default(1);
             $table->timestamps();
         });
     }

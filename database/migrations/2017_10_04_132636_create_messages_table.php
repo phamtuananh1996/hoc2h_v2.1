@@ -15,6 +15,12 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('conversation_id')->unsigned();
+            $table->foreign('conversation_id')
+                ->references('id')
+                ->on($tableNames['conversations'])
+                ->onDelete('cascade');
+            $table->text('content')->unique();
             $table->timestamps();
         });
     }
