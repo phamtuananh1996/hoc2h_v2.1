@@ -15,6 +15,18 @@ class CreateUserTestResultsTable extends Migration
     {
         Schema::create('user_test_results', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('question_id')->unsigned();
+             $table->foreign('question_id')
+                ->references('id')
+                ->on('test_questions')
+                ->onDelete('cascade');
+                $table->integer('rate');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->integer('choiced');
             $table->timestamps();
         });
     }

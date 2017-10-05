@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTestCommentVotesTable extends Migration
+class CreateAccountSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateTestCommentVotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('test_comment_votes', function (Blueprint $table) {
+        Schema::create('account_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('comment_id')->unsigned();
-             $table->foreign('comment_id')
-                ->references('id')
-                ->on('test_comments')
-                ->onDelete('cascade');
-                $table->integer('rate');
             $table->integer('user_id')->unsigned();
-             $table->foreign('user_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+            $table->integer('setting_id')->unsigned();
+            $table->foreign('setting_id')
+                ->references('id')
+                ->on('settings')
+                ->onDelete('cascade');
+            $table->integer('state')->default(1);
             $table->timestamps();
         });
     }
@@ -37,6 +37,6 @@ class CreateTestCommentVotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test_comment_votes');
+        Schema::dropIfExists('account_settings');
     }
 }

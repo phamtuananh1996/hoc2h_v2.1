@@ -15,6 +15,17 @@ class CreateTestRatesTable extends Migration
     {
         Schema::create('test_rates', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+             $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->integer('test_id')->unsigned();
+            $table->foreign('test_id')
+                ->references('id')
+                ->on('tests')
+                ->onDelete('cascade');
+                $table->integer('rate');
             $table->timestamps();
         });
     }

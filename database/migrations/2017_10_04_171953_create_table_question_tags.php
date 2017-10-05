@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTestCommentVotesTable extends Migration
+class CreateTableQuestionTags extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,17 @@ class CreateTestCommentVotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('test_comment_votes', function (Blueprint $table) {
+        Schema::create('question_tags', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('comment_id')->unsigned();
-             $table->foreign('comment_id')
+            $table->integer('question_id')->unsigned();
+             $table->foreign('question_id')
                 ->references('id')
-                ->on('test_comments')
+                ->on('questions')
                 ->onDelete('cascade');
-                $table->integer('rate');
-            $table->integer('user_id')->unsigned();
-             $table->foreign('user_id')
+            $table->integer('tag_id')->unsigned();
+            $table->foreign('tag_id')
                 ->references('id')
-                ->on('users')
+                ->on('tags')
                 ->onDelete('cascade');
             $table->timestamps();
         });
@@ -37,6 +36,6 @@ class CreateTestCommentVotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test_comment_votes');
+        Schema::dropIfExists('question_tags');
     }
 }

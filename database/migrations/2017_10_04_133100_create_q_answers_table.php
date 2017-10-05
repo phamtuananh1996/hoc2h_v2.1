@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccountSettingsTable extends Migration
+class CreateQAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,21 @@ class CreateAccountSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('account_settings', function (Blueprint $table) {
+        Schema::create('q_answers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+             $table->integer('question_id')->unsigned();
+            $table->foreign('question_id')
+                ->references('id')
+                ->on('questions')
+                ->onDelete('cascade');
+             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')
                 ->references('id')
-                ->on($tableNames['users'])
+                ->on('users')
                 ->onDelete('cascade');
-            $table->integer('setting_id')->unsigned();
-            $table->foreign('setting_id')
-                ->references('id')
-                ->on($tableNames['settings'])
-                ->onDelete('cascade');
+            $table->integer('is_best')->default(0);
+            $table->integer('votes_count')->default(0);
+            $table->text('body');
             $table->integer('state')->default(1);
             $table->timestamps();
         });
@@ -37,6 +40,6 @@ class CreateAccountSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('account_settings');
+        Schema::dropIfExists('q_answers');
     }
 }

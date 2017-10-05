@@ -15,6 +15,16 @@ class CreateQAnswerCommentVotesTable extends Migration
     {
         Schema::create('q_answer_comment_votes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('comment_id')->unsigned();
+            $table->foreign('comment_id')
+                ->references('id')
+                ->on('q_answer_comments')
+                ->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

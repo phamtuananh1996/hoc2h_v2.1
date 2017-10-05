@@ -15,6 +15,19 @@ class CreateUserTestsTable extends Migration
     {
         Schema::create('user_tests', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('test_id')->unsigned();
+             $table->foreign('test_id')
+                ->references('id')
+                ->on('tests')
+                ->onDelete('cascade');
+                $table->integer('rate');
+            $table->integer('user_id')->unsigned();
+             $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->integer('point')->default(0);
+            $table->string('evaluation_result')->nullable();
             $table->timestamps();
         });
     }

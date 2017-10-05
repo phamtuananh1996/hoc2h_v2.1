@@ -18,12 +18,12 @@ class CreateConversationsTable extends Migration
             $table->integer('from_user_id')->unsigned();
             $table->foreign('from_user_id')
                 ->references('id')
-                ->on($tableNames['users'])
+                ->on('users')
                 ->onDelete('cascade');
             $table->integer('to_user_id')->unsigned();
             $table->foreign('to_user_id')
                 ->references('id')
-                ->on($tableNames['users'])
+                ->on('users')
                 ->onDelete('cascade');
             $table->integer('state')->default(1);
             $table->timestamps();

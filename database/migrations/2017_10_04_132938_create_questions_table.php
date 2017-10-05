@@ -15,6 +15,23 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');
+            $table->string('title');
+            $table->text('body');
+            $table->boolean('is_resolved');
+            $table->integer('votes_count');
+            $table->integer('views_count');
+            $table->integer('answers_count');
+            $table->integer('state');
             $table->timestamps();
         });
     }

@@ -15,6 +15,19 @@ class CreateTestCommentsTable extends Migration
     {
         Schema::create('test_comments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('test_id')->unsigned();
+             $table->foreign('test_id')
+                ->references('id')
+                ->on('tests')
+                ->onDelete('cascade');
+                $table->integer('rate');
+            $table->integer('user_id')->unsigned();
+             $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->integer('votes_count')->default(0);
+            $table->text('body');
             $table->timestamps();
         });
     }
