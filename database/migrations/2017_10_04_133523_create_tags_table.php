@@ -21,7 +21,7 @@ class CreateTagsTable extends Migration
                 ->on('categories')
                 ->onDelete('cascade');
             $table->string('name');
-            $table->string('decriptions')->nullable();
+            $table->text('descriptions')->nullable();
             $table->timestamps();
         });
     }

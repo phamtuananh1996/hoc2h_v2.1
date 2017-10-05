@@ -23,7 +23,7 @@ class CreateTestQuestionsTable extends Migration
             $table->text('content');
             $table->integer('correct_answer_id');
             $table->text('explan')->nullable();
-            $table->integer('state')->defaul(1);
+            $table->integer('state')->default(1);
             $table->timestamps();
         });
     }

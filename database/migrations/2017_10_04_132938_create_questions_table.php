@@ -25,13 +25,13 @@ class CreateQuestionsTable extends Migration
                 ->references('id')
                 ->on('categories')
                 ->onDelete('cascade');
-            $table->string('title');
+            $table->text('title');
             $table->text('body');
-            $table->boolean('is_resolved');
-            $table->integer('votes_count');
-            $table->integer('views_count');
-            $table->integer('answers_count');
-            $table->integer('state');
+            $table->boolean('is_resolved')->default(false);
+            $table->integer('votes_count')->default(0);
+            $table->integer('views_count')->default(0);
+            $table->integer('answers_count')->default(0);
+            $table->integer('state')->default(1);
             $table->timestamps();
         });
     }
