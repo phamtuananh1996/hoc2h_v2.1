@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Setting;
 use App\NotificationSetting;
 use App\UserProfile;
+use App\Question;
+use App\Test;
 use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
@@ -40,5 +42,13 @@ class User extends Authenticatable
     public function profiles()
     {
        return $this->hasOne(UserProfile::class);
+    }
+     public function questions()
+    {
+       return $this->hasMany(Question::class);
+    }
+    public function tests()
+    {
+       return $this->hasMany(Test::class);
     }
 }

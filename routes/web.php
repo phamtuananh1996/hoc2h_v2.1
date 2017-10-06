@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/test', function () {
+	return response()->json(Auth::user()->getAllPermissions());
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

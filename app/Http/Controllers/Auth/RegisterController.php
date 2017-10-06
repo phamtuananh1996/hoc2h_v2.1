@@ -68,7 +68,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-
         $new_user->assignRole('Member');
         UserProfile::create(['user_id' => $new_user->id]);
         return $new_user;
