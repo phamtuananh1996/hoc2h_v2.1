@@ -84,7 +84,23 @@ class QuestionController extends Controller
     	}
     }
 
-   public function checkPermission($user_id,$permission){
+
+    public function vote(Request $request){
+
+    }
+
+    public function resolve(Request $request)
+    {
+
+    }
+
+    public function requestAnswer(Request $request)
+    {
+      
+    }
+
+    
+    public function checkPermission($user_id,$permission){
    		switch ($permission) {
    			case 'update_question':
    				if (Auth::user()->id == $user_id || Auth::user()->can('update_question')) {
