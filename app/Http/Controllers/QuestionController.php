@@ -9,6 +9,9 @@ use Auth;
 use App\Question;
 use App\Category;
 use App\QAnswer;
+use App\QuestionVote;
+use App\QuestionTag;
+use App\QRequestAnswer;
 
 class QuestionController extends Controller
 {
@@ -23,6 +26,8 @@ class QuestionController extends Controller
     public function show($id) {
     	//show question with question_id = $id
     	$question = Question::findOrFail($id);
+      $question->views_count += 1;
+      $question->save();
     	return $question;
     }
 
@@ -44,6 +49,7 @@ class QuestionController extends Controller
     		'user_id' => Auth::user()->id,
     		'body' => $request->body,
     	]);
+
     	if (isset($request->tags)) {
     		foreach ($request->tags as $key => $tag) {
     			QuestionTag::create([
@@ -64,7 +70,7 @@ class QuestionController extends Controller
     	]);
 
     	$question = Question::find($request->id);
-    	if ($this->checkPermission($question->user_id,'update_question')) {
+    	if ($this->checkPermission($question->user_id,'edit_question')) {
  			$question->category_id = $request->category;
 	    	$question->title = $request->title;
 	    	$question->body = $request->body;
@@ -87,30 +93,54 @@ class QuestionController extends Controller
 
     public function vote(Request $request){
 
+      $this->validate($request,['id' => 'required','param' => 'required']);
+
+      if (Auth::check()) {
+        $question = Question::findOrFail($request->id);
+        if ($request->param == 1) {
+          QuestionVote::create('question_id',$request->id,'user_id',Auth::user()->id);
+          $question->votes_count += 1;
+         
+        }else {
+          $question_vote = QuestionVote::where('question_id',$request->id)->where('user_id',Auth::user()->id)->first();
+          $question_vote->delete();
+          $question->votes_count -= 1;
+        }
+        $question->save();
+        return $request->param;
+      } else return -1;
     }
 
-    public function resolve(Request $request)
-    {
+    public function resolve(Request $request) {
+
+      $this->validate($request,['id' => 'required','param' => 'required']);
+      $question = Question::findOrFail($request->id);
+
+      if ($this->checkPermission($question->user_id,'set_rosolved')) {
+        $question->is_resolved = $request->param;
+        return $question;
+      }else 
+        return -1;
 
     }
 
-    public function requestAnswer(Request $request)
-    {
-      
+    public function requestAnswer(Request $request){
+
+      if (Auth::check()) {
+             
+      }
+
     }
 
     
     public function checkPermission($user_id,$permission){
+
    		switch ($permission) {
-   			case 'update_question':
-   				if (Auth::user()->id == $user_id || Auth::user()->can('update_question')) {
-   					return true;
-   				}else
-   					return false;
-   				break;
-   			
-   			case 'delete_question':
-   				if (Auth::user()->id == $user_id || Auth::user()->can('delete_question')) {
+
+   			case 'edit_question':
+        case 'delete_question':
+        case 'set_rosolved':
+   				if (Auth::user()->id == $user_id || Auth::user()->can($permission)) {
    					return true;
    				}else
    					return false;

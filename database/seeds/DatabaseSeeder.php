@@ -132,7 +132,7 @@ class DatabaseSeeder extends Seeder
     		App\Category::create([
     				'parent_id'=> 0,
     				'name'=> $category,
-    				'descriptions' => $faker->text($maxNbChars = 200) ,
+    				'descriptions' => $faker->text($maxNbChars = 200),
     				'order_display' => $key,
     			]);
     	}
@@ -216,12 +216,12 @@ class DatabaseSeeder extends Seeder
     public function createTestQuestions(){
         $faker = Faker::create();
         $tests = App\Test::all();
-        $conrect_answers = [1,2,3,4];
+        $correct_answers = [1,2,3,4];
         foreach ($tests as $test) {
             for ($i=0; $i < $test->number_of_questions; $i++) { 
                 App\TestQuestion::create([
                     'test_id' => $test->id,
-                    'correct_answer_id' => $faker->randomElement($conrect_answers),
+                    'correct_answer_id' => $faker->randomElement($correct_answers),
                     'explan' => $faker->text($maxNbChars = 200),
                     'content' => $faker->text($maxNbChars = 300),
                 ]);
