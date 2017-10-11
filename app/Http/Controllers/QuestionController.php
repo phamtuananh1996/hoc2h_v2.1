@@ -157,4 +157,14 @@ class QuestionController extends Controller
         } 
     }
 
+    public function postNotifications($type, $object)
+    {
+      switch ($type) {
+        case '':
+          break;
+        default:
+          break;
+      }
+    }
+
 }

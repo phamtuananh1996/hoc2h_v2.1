@@ -21,16 +21,85 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//USER ROUTES
 Route::group(['prefix'=>'users'],function(){
+	
+	Route::get('/index','UserController@index');
+	Route::get('/profile/{id}','UserController@show');
+	Route::get('/active/{id}','UserController@actives');
+	Route::get('/setting/{id}','UserController@settings');
+	Route::post('profile/edit','UserController@updateProfile');
+	Route::post('setting/edit','UserController@udpateSettings');
 
 });
 
+//ADMIN ROUTES
+Route::group(['prefix' => 'admin'],function(){
+	Route::group(['prefix' => 'users'],function(){
+		Route::get('/','UserController@adminIndex');
+		Route::get('/{id}','UserController@adminShow');
+		Route::get('/setting/{id}','UserController@adminSettings');
+		Route::get('/create','UserController@adminCreate');
+
+		Route::post('/create','UserController@adminStore');
+		Route::post('/edit','UserController@adminUpdate');
+		Route::post('/delete','UserController@adminDestroy');
+		Route::post('/ban','UserController@adminBan');
+
+	});
+
+	Route::group(['prefix' => 'categories'],function(){
+		Route::get('/','CategoryController@index');
+		Route::get('/show/{id}','CategoryController@show');
+
+		Route::post('/create','CategoryController@store');
+		Route::post('/edit','CategoryController@update');
+		Route::post('/delete','CategoryController@destroy');
+
+	});
+
+	Route::group(['prefix' => 'roles'],function(){
+
+		Route::get('/','RoleController@index');
+		Route::get('/show/{id}','RoleController@show');
+		Route::get('/create','RoleController@create');
+
+		Route::post('/create','RoleController@store');
+		Route::post('/edit','RoleController@update');
+		Route::post('/delete','RoleController@destroy');
+
+	});
+
+	Route::group(['prefix' => 'permission'],function(){
+
+		Route::get('/','PermissionController@index');
+		Route::get('/show/{id}','PermissionController@show');
+
+		Route::post('/create','PermissionController@store');
+		Route::post('/edit','PermissionController@update');
+		Route::post('/delete','PermissionController@destroy');
+
+	});
+
+	Route::group(['prefix' => 'tags'],function(){
+
+		Route::get('/','TagController@index');
+		Route::get('/show/{id}','TagController@show');
+
+		Route::post('/create','TagController@store');
+		Route::post('/edit','TagController@update');
+		Route::post('/delete','TagController@destroy');
+
+	});
+});
+
+//QUESTION ROUTES
 Route::group(['prefix'=>'questions'],function(){
 	Route::get('/index','QuestionController@index');
 	Route::get('/show/{id}','QuestionController@show');
 	Route::get('/create','QuestionController@create');
 	Route::post('/store','QuestionController@store');
-	Route::post('/update','QuestionController@update');
+	Route::post('/edit','QuestionController@update');
 	Route::post('/delete','QuestionController@destroy');
 	Route::post('/vote','QuestionController@vote');
 	Route::post('/resolve','QuestionController@resolve');
@@ -39,14 +108,14 @@ Route::group(['prefix'=>'questions'],function(){
 	Route::group(['prefix' => 'answers'],function(){
 		Route::get('index/{question_id}','AnswerController@index');
 		Route::post('/store','AnswerController@store');
-		Route::post('/update','AnswerController@update');
+		Route::post('/edit','AnswerController@update');
 		Route::post('/delete','AnswerController@destroy');
 		Route::post('/vote','AnswerController@vote');
 		Route::post('/best','AnswerController@setBest');
 
 		Route::group(['prefix' => 'comments'],function(){
 			Route::post('/store','AnswerController@addComment');
-			Route::post('/update','AnswerController@updateComment');
+			Route::post('/edit','AnswerController@updateComment');
 			Route::post('/delete','AnswerController@deleteComment');
 			Route::post('/vote','AnswerController@voteComment');
 
@@ -54,6 +123,8 @@ Route::group(['prefix'=>'questions'],function(){
 	});
 });
 
+
+//TEST ROUTES
 Route::group(['prefix'=>'tests'],function(){
 
 });
