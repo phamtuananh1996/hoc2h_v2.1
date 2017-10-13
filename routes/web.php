@@ -35,6 +35,12 @@ Route::group(['prefix'=>'users'],function(){
 
 //ADMIN ROUTES
 Route::group(['prefix' => 'admin'],function(){
+	Route::group(['prefix' => '/'], function() {
+	    Route::get('login', 'Auth\AdminLoginController@index');
+	    Route::post('login', 'Auth\AdminLoginController@login');
+	    Route::get('logout', 'Auth\AdminLoginController@logout');
+	    Route::get('home', 'HomeAdminController@index');
+	});
 	Route::group(['prefix' => 'users'],function(){
 		Route::get('/','UserController@adminIndex');
 		Route::get('/{id}','UserController@adminShow');

@@ -39,7 +39,7 @@ class User extends Authenticatable
     {
        return $this->belongsToMany(NotificationSetting::class,'account_settings','user_id','notification_id')->withpivot('state');
     }
-    public function profiles()
+    public function profile()
     {
        return $this->hasOne(UserProfile::class);
     }
