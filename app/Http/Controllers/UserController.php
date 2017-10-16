@@ -50,7 +50,7 @@ class UserController extends Controller
 
     public function adminIndex()
     {
-    	# code...
+    	return view('admin.user.index');
     }
 
     public function adminShow($id)

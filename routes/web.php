@@ -34,7 +34,8 @@ Route::group(['prefix'=>'users'],function(){
 });
 
 //ADMIN ROUTES
-Route::group(['prefix' => 'admin'],function(){
+Route::group(['prefix' => 'admin','middleware'=>'AdminMiddleware'],function(){
+	Route::get('/', 'Auth\AdminLoginController@index');
 	Route::group(['prefix' => '/'], function() {
 	    Route::get('login', 'Auth\AdminLoginController@index');
 	    Route::post('login', 'Auth\AdminLoginController@login');
@@ -56,20 +57,21 @@ Route::group(['prefix' => 'admin'],function(){
 
 	Route::group(['prefix' => 'categories'],function(){
 		Route::get('/','CategoryController@index');
-		Route::get('/show/{id}','CategoryController@show');
-
 		Route::post('/create','CategoryController@store');
-		Route::post('/edit','CategoryController@update');
-		Route::post('/delete','CategoryController@destroy');
-
+		Route::post('/show/{id}','CategoryController@update');
+		Route::delete('/delete/{id}','CategoryController@destroy');
+		Route::group(['prefix' => 'api'], function() {
+		    Route::get('listall', 'CategoryController@listAll');
+		});
 	});
 
 	Route::group(['prefix' => 'roles'],function(){
 
 		Route::get('/','RoleController@index');
 		Route::get('/show/{id}','RoleController@show');
-		Route::get('/create','RoleController@create');
-
+		Route::get('/create','RoleController@create');		Route::group(['prefix' => 'admin'], function() {
+		    //
+		});
 		Route::post('/create','RoleController@store');
 		Route::post('/edit','RoleController@update');
 		Route::post('/delete','RoleController@destroy');

@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-title" content="Milestone">
 
     <meta name="theme-color" content="#4C7FF0">
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Milestone - Bootstrap 4 Dashboard Template</title>
 
     <!-- page stylesheets -->
@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/font-awesome/css/font-awesome.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/animate.css/animate.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/admin/styles/app.css') }}" id="load_styles_before"/>
+     <script src="{{ asset('assets/admin/vendor/jquery/dist/jquery.js') }}"></script>
     <!-- endbuild -->
   </head>
   <body>
@@ -61,10 +62,14 @@
           trackMethods: [ 'POST','GET']
         }
       };
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
     </script>
 
     <!-- build:js({.tmp,app}) scripts/app.min.js -->
-    <script src="{{ asset('assets/admin/vendor/jquery/dist/jquery.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/pace/pace.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/tether/dist/js/tether.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/bootstrap/dist/js/bootstrap.js') }}"></script>

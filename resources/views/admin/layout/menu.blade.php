@@ -40,7 +40,7 @@
           <ul class="nav">
             <!-- dashboard -->
             <li>
-              <a href="index.html">
+              <a href="{{ url('/admin/home') }}">
                 <i class="material-icons text-primary">home</i>
                 <span>Home</span>
               </a>
@@ -48,7 +48,7 @@
             <!-- /dashboard -->
             <!-- apps -->
               <li>
-              <a href="index.html">
+              <a href="{{ url('/admin/categories') }}">
                 <i class="material-icons text-success">format_list_numbered</i>
                 <span>Category</span>
               </a>
@@ -64,7 +64,7 @@
             <!-- /ui -->
             <!-- charts -->
               <li>
-              <a href="index.html">
+              <a href="{{ url('admin/users') }}">
                 <i class="material-icons text-info">account_box</i>
                 <span>User</span>
               </a>
