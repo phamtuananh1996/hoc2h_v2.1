@@ -53,6 +53,9 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminMiddleware'],function(){
 		Route::post('/delete','UserController@adminDestroy');
 		Route::post('/ban','UserController@adminBan');
 
+		Route::group(['prefix' => 'api'], function() {
+		   Route::get('getall', 'UserController@adminGetAll');
+		});
 	});
 
 	Route::group(['prefix' => 'categories'],function(){
@@ -69,13 +72,14 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminMiddleware'],function(){
 
 		Route::get('/','RoleController@index');
 		Route::get('/show/{id}','RoleController@show');
-		Route::get('/create','RoleController@create');		Route::group(['prefix' => 'admin'], function() {
-		    //
-		});
+		Route::get('/create','RoleController@create');		
 		Route::post('/create','RoleController@store');
 		Route::post('/edit','RoleController@update');
-		Route::post('/delete','RoleController@destroy');
-
+		Route::post('/multidelete','RoleController@multiDelete');
+		Route::delete('/delete/{id}','RoleController@destroy');
+		Route::group(['prefix' => 'api'], function() {
+		   Route::get('getall', 'RoleController@adminGetAll');
+		});
 	});
 
 	Route::group(['prefix' => 'permission'],function(){

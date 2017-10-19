@@ -19,7 +19,7 @@
             </div>
             <div class="user-info expanding-hidden">
              {{Auth::user()->email}}
-              <small class="bold">Administrator</small>
+              <small class="bold">{{Auth::user()->getRoleNames()[0]}}</small>
             </div>
           </a>
           <div class="dropdown-menu">
@@ -73,6 +73,12 @@
               <a href="index.html">
                 <i class="material-icons text-warning">fingerprint</i>
                 <span>Permission</span>
+              </a>
+            </li>
+             <li>
+              <a href="{{ url('admin/roles') }}">
+                <i class="material-icons text-justify"> people</i>
+                <span>Role</span>
               </a>
             </li>
             <!-- /charts -->

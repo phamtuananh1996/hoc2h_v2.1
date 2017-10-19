@@ -16,7 +16,7 @@
 
     <meta name="theme-color" content="#4C7FF0">
     
-    <title>Milestone - Bootstrap 4 Dashboard Template</title>
+    <title>Hoc2h-login</title>
 
     <!-- page stylesheets -->
     <!-- end page stylesheets -->
@@ -40,11 +40,17 @@
                 <div class="text-xs-center m-b-3">
                   <img src="{{ asset('assets/admin/images/logo-icon.png') }}" height="80" alt="" class="m-b-1"/>
                   <h5>
-                    Welcome back!
+                    Welcome to hoc2h!
                   </h5>
+                  @if (\Session::has('message'))
+                   <p style="color: red">
+                   {!! \Session::get('message') !!}
+                  </p>
+                  @else
                   <p class="text-muted">
                     Sign in with your app id to continue.
                   </p>
+                  @endif
                 </div>
                 <fieldset class="form-group">
                   <label for="username">

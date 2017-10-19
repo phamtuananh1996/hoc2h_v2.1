@@ -19,9 +19,10 @@
     <title>Milestone - Bootstrap 4 Dashboard Template</title>
 
     <!-- page stylesheets -->
-    <link rel="stylesheet" href="vendor/bower-jvectormap/jquery-jvectormap-1.2.2.css"/>
+     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/sweetalert/dist/sweetalert.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/bower-jvectormap/jquery-jvectormap-1.2.2.css') }}"/>
     <!-- end page stylesheets -->
-
+   <link rel="stylesheet" href="{{ asset('assets/admin/vendor/datatables/media/css/dataTables.bootstrap4.css') }}">
     <!-- build:css({.tmp,app}) styles/app.min.css -->
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/bootstrap/dist/css/bootstrap.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/pace/themes/blue/pace-theme-minimal.css') }}"/>
@@ -29,10 +30,26 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/animate.css/animate.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/admin/styles/app.css') }}" id="load_styles_before"/>
      <script src="{{ asset('assets/admin/vendor/jquery/dist/jquery.js') }}"></script>
+     <script src="{{asset('js/flugin/angular/angular.min.js')}}"></script> 
+     <script src="{{asset('js/flugin/bootstrap/ui-bootstrap-tpls-2.5.0.min.js')}}"></script>
+     <script src="{{asset('js/controllers/admin/app.js')}}"></script>
+     <script src="{{asset('js/controllers/admin/user.js')}}"></script>
+     <script src="{{asset('js/controllers/admin/role.js')}}"></script>
+     <style type="text/css">
+     .loading{
+      background:center no-repeat #fff;
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 9999
+      }
+    </style>
     <!-- endbuild -->
   </head>
   <body>
-
+    <div class="loading"></div>
     <div class="app">
       <!--sidebar panel-->
       @include('admin.layout.menu')
@@ -44,7 +61,7 @@
         <!-- /top header -->
 
         <!-- main area -->
-        <div class="main-content">
+        <div class="main-content" ng-app="Hoc2h">
           @yield('content')
         </div>
         <!-- /main area -->
@@ -87,6 +104,7 @@
     <script src="{{ asset('assets/admin/vendor/jquery.easy-pie-chart/dist/jquery.easypiechart.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/noty/js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
     <script src="{{ asset('assets/admin/scripts/helpers/noty-defaults.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/sweetalert/dist/sweetalert.min.js') }}"></script>
     <!-- end page scripts -->
 
     <!-- initialize page scripts -->
