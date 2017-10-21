@@ -4,6 +4,7 @@
 		<div class="card-header b-a-0">
 			Quản lý người dùng
 			<button ng-click="multidelete()" class="btn btn-primary pull-right btn-sm" style="margin-right: 30px"><i class="fa fa-trash" aria-hidden="true"></i> delete</button>
+			<button ng-click="multiban()" class="btn btn-primary pull-right btn-sm" style="margin-right: 30px"><i class="fa fa-ban" aria-hidden="true"></i> Ban</button>
 			<a href="/admin/user/create" class="btn btn-primary pull-right btn-sm" style="margin-right: 30px"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
 			
 		</div>

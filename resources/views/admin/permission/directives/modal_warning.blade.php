@@ -3,7 +3,7 @@
 		<h4 class="modal-title">Cảnh báo!</h4>
 	</div>
 	<div class="modal-body">
-		Bạn không thể xóa group này.đây là group mặc định!!
+		Bạn chưa chọn permission!!
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-warning" ng-click="cancel()">Cancel</button>

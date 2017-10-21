@@ -1,9 +1,9 @@
-<script type="text/ng-template" id="modal_multidelete.html">
+<script type="text/ng-template" id="modal_delete.html">
   <div class="modal-header">
     <h4 class="modal-title">Xác nhận</h4>
   </div>
   <div class="modal-body">
-     Bạn có chắc chắn muốn xóa các group này không.nếu xóa các thành viên trong group này sẽ chuyển thành member !
+    Bạn có chắc chắn muốn xóa permission !
   </div>
   <div class="modal-footer">
     <button class="btn btn-primary btn-sm" ng-click="delete()">Vẫn xóa</button>

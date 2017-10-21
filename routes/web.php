@@ -82,15 +82,18 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminMiddleware'],function(){
 		});
 	});
 
-	Route::group(['prefix' => 'permission'],function(){
+	Route::group(['prefix' => 'permissions'],function(){
 
 		Route::get('/','PermissionController@index');
 		Route::get('/show/{id}','PermissionController@show');
-
 		Route::post('/create','PermissionController@store');
 		Route::post('/edit','PermissionController@update');
-		Route::post('/delete','PermissionController@destroy');
-
+		Route::delete('/delete/{id}','PermissionController@destroy');
+		Route::post('/multidelete','PermissionController@multiDelete');
+		Route::post('/search','PermissionController@search');
+		Route::group(['prefix' => 'api'], function() {
+		   Route::get('getall', 'PermissionController@adminGetAll');
+		});
 	});
 
 	Route::group(['prefix' => 'tags'],function(){

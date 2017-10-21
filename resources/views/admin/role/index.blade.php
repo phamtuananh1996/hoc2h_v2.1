@@ -17,13 +17,13 @@
 				<table class="table table-bordered table-striped m-b-0" ng-table="tableview">
 					<thead>
 						<tr>
-							<th width="5%">
+							<th>
 								<input type="checkbox" class="checkbox" ng-model="selectedAll" ng-click="checkAll()" />
 							</th>
-							<th width="10%">id</th>
+							<th>id</th>
 							<th>name</th>
-							<th width="15%">guard name</th>
-							<th width="15%">Action</th>
+							<th>guard name</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -40,7 +40,7 @@
 							<td>{{role.guard_name}}</td>
 							<td>
 								<div class="table-actions">
-									<a class="btn btn-sm btn-warning" href="" ng-click="ban()" data-toggle="tooltip" title="Permission">
+									<a class="btn btn-sm btn-warning" href="/admin/pemission/{{role.id}}" data-toggle="tooltip" title="Permission">
 										<i class="fa fa-users" aria-hidden="true"></i>
 									</a>&nbsp;
 									<a href="" class="btn btn-sm btn-primary" ng-click="edit(role)" data-toggle="tooltip" title="Edit">

@@ -70,7 +70,7 @@
               </a>
             </li>
              <li>
-              <a href="index.html">
+              <a href="{{ url('/admin/permissions') }}">
                 <i class="material-icons text-warning">fingerprint</i>
                 <span>Permission</span>
               </a>
