@@ -16,7 +16,7 @@
 
     <meta name="theme-color" content="#4C7FF0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Milestone - Bootstrap 4 Dashboard Template</title>
+    <title>Hoc2h - admin</title>
 
     <!-- page stylesheets -->
      <link rel="stylesheet" href="{{ asset('assets/admin/vendor/sweetalert/dist/sweetalert.css') }}">

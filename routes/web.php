@@ -44,9 +44,10 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminMiddleware'],function(){
 	});
 	Route::group(['prefix' => 'users'],function(){
 		Route::get('/','UserController@adminIndex');
+		Route::get('/create','UserController@adminCreate');
 		Route::get('/{id}','UserController@adminShow');
 		Route::get('/setting/{id}','UserController@adminSettings');
-		Route::get('/create','UserController@adminCreate');
+		
 
 		Route::post('/create','UserController@adminStore');
 		Route::post('/edit','UserController@adminUpdate');

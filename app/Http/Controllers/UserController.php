@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 class UserController extends Controller
 {
     public function index()
@@ -55,7 +56,9 @@ class UserController extends Controller
 
     public function adminShow($id)
     {
-    	# code...
+        $user=User::findorfail($id);
+    	$role=Role::all();
+        return view('admin.user.edit',compact('role','user'));
     }
 
     public function adminSettings($id)
@@ -66,7 +69,8 @@ class UserController extends Controller
 
     public function adminCreate()
     {
-    	# code...
+        $role=Role::all();
+    	return view('admin.user.create',compact('role'));
     }
 
 
@@ -77,7 +81,7 @@ class UserController extends Controller
 
     public function adminUpdate(Request $request)
     {
-    	# code...
+    	
     }
 
     public function adminDestroy(Request $request)

@@ -7,7 +7,7 @@
         <input type="text" name="name" ng-model="name" class="form-control">
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary btn-sm" ng-click="edit()">Create</button>
+    <button class="btn btn-primary btn-sm" ng-click="edit()">Edit</button>
     <button class="btn btn-warning btn-sm" ng-click="cancel()">Cancel</button>
   </div>
 </script>
