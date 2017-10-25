@@ -29,14 +29,16 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/font-awesome/css/font-awesome.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/animate.css/animate.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/admin/styles/app.css') }}" id="load_styles_before"/>
+    <link rel="stylesheet" href="{{ asset('js/flugin/validate/screen.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/admin/styles/app.skins.css') }}"/>
      <script src="{{ asset('assets/admin/vendor/jquery/dist/jquery.js') }}"></script>
+     <script src="{{asset('js/flugin/validate/jquery.validate.js')}}"></script>
      <script src="{{asset('js/flugin/angular/angular.min.js')}}"></script> 
      <script src="{{asset('js/flugin/bootstrap/ui-bootstrap-tpls-2.5.0.min.js')}}"></script>
      <script src="{{asset('js/controllers/admin/app.js')}}"></script>
      <script src="{{asset('js/controllers/admin/user.js')}}"></script>
      <script src="{{asset('js/controllers/admin/role.js')}}"></script>
-       <script src="{{asset('js/controllers/admin/permission.js')}}"></script>
+     <script src="{{asset('js/controllers/admin/permission.js')}}"></script>
      <style type="text/css">
      .loading{
       background:center no-repeat #fff;

@@ -1,18 +1,20 @@
 @extends('admin.layout.master')
 @section('content')
+<script type="text/javascript" src="{{ asset('js/flugin/validate/user_create.js') }}"></script>
 <div class="card">
 	<div class="card-header b-a-0">
 		<div>Thông Tin người dùng ( * trường bắt buộc nhập)</div>
 	</div>
 	<div class="card-block">
-		<form class="form-horizontal">
+		<form class="form-horizontal" id="usercreate" action="{{ url('/admin/users/create') }}" method="POST">
+			{{csrf_field()}}
 			<div class="form-group row">
 				<label class="col-md-1 col-form-label">Role *:</label>
 				<div class="col-md-10">
-					<select class="form-control">
+					<select class="form-control" name="role" required>
 						<option value="">Role</option>
 						@foreach ($role as $roles)
-							<option value="{{$roles->id}}">{{$roles->name}}</option>
+							<option value="{{$roles->name}}">{{$roles->name}}</option>
 						@endforeach
 					</select>
 				</div>
@@ -20,31 +22,31 @@
 			<div class="form-group row">
 				<label class="col-md-1 col-form-label">Name *:</label>
 				<div class="col-md-10">
-					<input type="text" name="name" class="form-control" placeholder="Name">
+					<input type="text" name="name" class="form-control" placeholder="Name" >
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-md-1 col-form-label">Userame*:</label>
 				<div class="col-md-10">
-					<input type="text" name="name" class="form-control" placeholder="Userame">
+					<input type="text" name="user_name" id="user_name" class="form-control" placeholder="Userame">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-md-1 col-form-label">Email *:</label>
 				<div class="col-md-10">
-					<input type="text" name="email" placeholder="Email" class="form-control">
+					<input type="text" name="email" id="email" placeholder="Email" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-md-1 col-form-label">Password*:</label>
 				<div class="col-md-10">
-					<input type="text" name="password" placeholder="password" class="form-control">
+					<input type="password" name="password" id="password" placeholder="password" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-md-1 col-form-label">Re-pw *:</label>
 				<div class="col-md-10">
-					<input type="text" name="re_password" placeholder="Password Confirm" class="form-control">
+					<input type="password" name="re_password" placeholder="Password Confirm" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
@@ -86,7 +88,7 @@
 				<label class="col-md-1 col-form-label">Avatar/Coin:</label>
 				<div class="col-md-5">
 					<label class="custom-file col-md-12">
-                      <input type="file" id="file" class="custom-file-input" accept="image/*">
+                      <input type="file" name="file" id="file" class="custom-file-input" accept="image/*">
                       <span class="custom-file-control"></span>
                     </label>
 				</div>
@@ -97,7 +99,7 @@
 			<div class="form-group row">
 				<label class="col-md-1 col-form-label">Introduction*:</label>
 				<div class="col-md-10">
-					<textarea class="form-control" rows="3" placeholder="Introduction"> 
+					<textarea class="form-control" rows="3" placeholder="Introduction" name="intro"> 
 					</textarea>
 				</div>
 			</div>

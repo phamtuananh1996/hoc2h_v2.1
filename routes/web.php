@@ -51,8 +51,12 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminMiddleware'],function(){
 
 		Route::post('/create','UserController@adminStore');
 		Route::post('/edit','UserController@adminUpdate');
-		Route::post('/delete','UserController@adminDestroy');
+		Route::delete('/delete/{id}','UserController@adminDestroy');
+		Route::post('/multidelete','UserController@adminMultiDelete');
 		Route::post('/ban','UserController@adminBan');
+		Route::post('/multiban','UserController@adminMultiBan');
+		Route::post('/active','UserController@adminActive');
+		Route::post('/multiactive','UserController@adminMultiActive');
 
 		Route::group(['prefix' => 'api'], function() {
 		   Route::get('getall', 'UserController@adminGetAll');
@@ -106,6 +110,11 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminMiddleware'],function(){
 		Route::post('/edit','TagController@update');
 		Route::post('/delete','TagController@destroy');
 
+	});
+
+	Route::group(['prefix' => 'validate'],function(){
+		Route::post('/checkEmail','UserController@checkEmail');
+		Route::post('/checkUserName','UserController@checkUsername');
 	});
 });
 
